@@ -3,6 +3,8 @@ package com.example.cicddemo.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookService {
 
@@ -29,6 +31,11 @@ public class BookService {
 
     public Book getById(Long id) {
         return bookRepository.getBookById(id);
+    }
+
+    public List<Book> getAll() {
+        List<Book> bookList = bookRepository.findAll();
+        return bookList;
     }
 
     public void deleteById(Long id) {

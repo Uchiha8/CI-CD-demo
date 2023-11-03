@@ -3,6 +3,8 @@ package com.example.cicddemo.domain;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1")
 public class BookController {
@@ -25,6 +27,12 @@ public class BookController {
     @GetMapping("/readBook/id")
     public ResponseEntity<Book> read(@RequestParam Long id) {
         return ResponseEntity.ok(bookService.getById(id));
+    }
+
+    @GetMapping("/readAll")
+    public ResponseEntity<List<Book>> readAll() {
+        List<Book> bookList = bookService.getAll();
+        return ResponseEntity.ok(bookList);
     }
 
     @DeleteMapping("/delete/id")
