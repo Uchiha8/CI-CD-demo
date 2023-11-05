@@ -1,22 +1,19 @@
+
+#!/usr/bin/env groovy
 pipeline {
     agent any
 
-   tools {
-    gradle 'gradle'
-    }
-    stage('Scan') {
-            steps {
-                withSonarQubeEnv(installationName: 'sonar1'){
-                    sh './gradlew clean package sonar:sonar'
-                }
-            }
-        }
+    tools {
+      maven '3.9.5'
     }
 
-    post {
-        success {
-            // Archive and publish JaCoCo code coverage reports
-            archiveArtifacts artifacts: '**/build/reports/jacoco/test/jacocoTestReport.xml', allowEmptyArchive: true
+    stages {
+        stage('Scan') {
+            steps {
+                withSonarQubeEnv(installationName: 'sonarqube13'){
+                    bat 'mvn clean package sonar:sonar'
+                }
+            }
         }
     }
 }
