@@ -24,13 +24,13 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            // Deploy your Spring Boot application or perform other actions if the build and tests succeed.
-        }
-        failure {
-            // Take actions in case of build or test failures.
-        }
-    }
+    // post {
+    //     success {
+    //         // Deploy your Spring Boot application or perform other actions if the build and tests succeed.
+    //     }
+    //     failure {
+    //         // Take actions in case of build or test failures.
+    //     }
+    // }
 }
 
