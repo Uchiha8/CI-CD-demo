@@ -10,7 +10,7 @@ pipeline {
                 scannerHome = tool "sonar-scanner"
             }
             steps {
-                withSonarQubeEnv("sonar-server") {
+                withSonarQubeEnv("soanrqube13") {
                     bat 'gradle clean assemble sonar:sonar'
                 }
             }
