@@ -5,10 +5,13 @@ pipeline {
     }
 
     stages {
-        stage('Scan') {
+       stage('SonarQube Analyze') {
+            environment {
+                scannerHome = tool "sonar-scanner"
+            }
             steps {
-                withSonarQubeEnv(installationName: 'sonarqube13'){
-                   bat './gradlew sonarqube'
+                withSonarQubeEnv("sonar-server") {
+                    bat 'gradle clean assemble sonar:sonar'
                 }
             }
         }
