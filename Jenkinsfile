@@ -8,7 +8,7 @@ pipeline {
         stage('Scan') {
             steps {
                 withSonarQubeEnv(installationName: 'sonarqube13'){
-                    bat 'mvn clean package sonar:sonar'
+                   bat './gradlew sonarqube'
                 }
             }
         }
