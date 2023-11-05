@@ -14,11 +14,17 @@ pipeline {
 stage('Unit & Integration Tests') {
             steps {
                 script {
-                        sh './gradlew clean test --no-daemon' //run a gradle task
+                        sh './gradlew clean test' //run a gradle task
                 }
             }
         }
-
+stage('Scan') {
+            steps {
+                withSonarQubeEnv(installationName: 'sonar1'){
+                    sh './gradlew clean package sonar:sonar'
+                }
+            }
+        }
         // stage('Code Analysis') {
         //     steps {
         //         // Configure SonarQube Scanner (you must install it on your Jenkins server)
